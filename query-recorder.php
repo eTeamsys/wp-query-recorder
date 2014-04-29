@@ -19,31 +19,12 @@ Author URI: http://deliciousbrains.com
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // **********************************************************************
 
+$GLOBALS['query_recorder_version'] = '0.1';
 
-function dbrains_record_query( $sql ) {
-	if ( !preg_match( '@^(INSERT|UPDATE|DELETE|DROP|CREATE)@i', $sql ) ) {
-		return $sql;
-	}
+function query_recorder_init() {
+	require_once 'class/query-recorder.php';
 
-	$ignore_strings = array( 
-		"_transient",
-		"`option_name` = 'cron'",
-		"post_type=deprecated_log",
-		"SET `comment_count`",
-		"`meta_key` = '_edit_lock'",
-		"_yoast_wpseo_linkdex"
-	);
-	foreach ( $ignore_strings as $string ) {
-		if ( false !== strpos( $sql, $string ) ) {
-			return $sql;
-		}
-	}
-
-	$upload_dir = wp_upload_dir();
-	file_put_contents( $upload_dir['basedir'] . '/recorded-queries.txt', $sql . "\n", FILE_APPEND );
-
-	return $sql;
+	global $query_recorder;
+	$query_recorder = new Query_Recorder( __FILE__ );
 }
-
-// Set priority high to make sure it's the last filter to run
-add_filter( 'query', 'dbrains_record_query', 9999 );
+add_action( 'init', 'query_recorder_init', 5 );
