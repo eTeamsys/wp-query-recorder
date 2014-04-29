@@ -7,7 +7,7 @@ class Query_Recorder {
 		$this->plugin_dir_path = plugin_dir_path( $plugin_file_path );
 		$this->plugin_folder_name = basename( $this->plugin_dir_path );
 		$this->plugin_basename = plugin_basename( $plugin_file_path );
-		$this->plugin_base ='options-general.php?page=query_recorder';
+		$this->plugin_base ='options-general.php?page=query-recorder';
 
 		$this->required_cap = 'manage_options';
 
@@ -19,7 +19,12 @@ class Query_Recorder {
 	}
 
 	function admin_init() {
+		add_action( 'admin_menu', array( $this, 'add_pages' ) );
 		add_filter( 'plugin_action_links_' . $this->plugin_basename, array( $this, 'plugin_action_links' ) );
+	}
+
+	function add_pages() {
+		$options_page = add_options_page( __( "Query Recorder", 'query-recorder' ), __( "Query Recorder", 'query-recorder' ), $this->required_cap, 'query-recorder', array( $this, 'page_options' ) );
 	}
 
 	function plugin_action_links( $links ) {
@@ -52,6 +57,10 @@ class Query_Recorder {
 		file_put_contents( $upload_dir['basedir'] . '/recorded-queries.txt', $sql . "\n", FILE_APPEND );
 
 		return $sql;
+	}
+
+	function page_options() {
+
 	}
 
 }
