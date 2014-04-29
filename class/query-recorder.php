@@ -9,7 +9,24 @@ class Query_Recorder {
 		$this->plugin_basename = plugin_basename( $plugin_file_path );
 		$this->plugin_base ='options-general.php?page=query_recorder';
 
+		$this->required_cap = 'manage_options';
+
+		if ( is_admin() ) {
+			$this->admin_init();
+		}
+
 		add_filter( 'query', array( $this, 'record_query' ), 9999 ); // Set priority high to make sure it's the last filter to run
+	}
+
+	function admin_init() {
+		add_filter( 'plugin_action_links_' . $this->plugin_basename, array( $this, 'plugin_action_links' ) );
+	}
+
+	function plugin_action_links( $links ) {
+		if ( !current_user_can( $this->required_cap ) ) return $links; // don't show the Settings link unless the user can access the Settings page
+		$link = sprintf( '<a href="%s">%s</a>', admin_url( $this->plugin_base ), __( 'Settings', 'query-recorder' ) );
+		array_unshift( $links, $link );
+		return $links;
 	}
 
 	function record_query( $sql ) {
