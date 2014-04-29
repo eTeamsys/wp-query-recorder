@@ -21,28 +21,28 @@ Author URI: http://deliciousbrains.com
 
 
 function dbrains_record_query( $sql ) {
-    if ( !preg_match( '@^(INSERT|UPDATE|DELETE|DROP|CREATE)@i', $sql ) ) {
-        return $sql;
-    }
+	if ( !preg_match( '@^(INSERT|UPDATE|DELETE|DROP|CREATE)@i', $sql ) ) {
+		return $sql;
+	}
 
-    $ignore_strings = array( 
-        "_transient",
-        "`option_name` = 'cron'",
-        "post_type=deprecated_log",
-        "SET `comment_count`",
-        "`meta_key` = '_edit_lock'",
-        "_yoast_wpseo_linkdex"
-    );
-    foreach ( $ignore_strings as $string ) {
-        if ( false !== strpos( $sql, $string ) ) {
-            return $sql;
-        }
-    }
+	$ignore_strings = array( 
+		"_transient",
+		"`option_name` = 'cron'",
+		"post_type=deprecated_log",
+		"SET `comment_count`",
+		"`meta_key` = '_edit_lock'",
+		"_yoast_wpseo_linkdex"
+	);
+	foreach ( $ignore_strings as $string ) {
+		if ( false !== strpos( $sql, $string ) ) {
+			return $sql;
+		}
+	}
 
-    $upload_dir = wp_upload_dir();
-    file_put_contents( $upload_dir['basedir'] . '/recorded-queries.txt', $sql . "\n", FILE_APPEND );
+	$upload_dir = wp_upload_dir();
+	file_put_contents( $upload_dir['basedir'] . '/recorded-queries.txt', $sql . "\n", FILE_APPEND );
 
-    return $sql;
+	return $sql;
 }
 
 // Set priority high to make sure it's the last filter to run
