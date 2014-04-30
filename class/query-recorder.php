@@ -18,7 +18,29 @@ class Query_Recorder {
 			$this->admin_init();
 		}
 
-		add_filter( 'query', array( $this, 'record_query' ), 9999 ); // Set priority high to make sure it's the last filter to run
+		if ( is_admin_bar_showing() && current_user_can( $this->required_cap ) ) {
+			add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ) );
+			$this->admin_bar_assets();
+		}
+
+		if ( true === $this->options['active'] ) {
+			add_filter( 'query', array( $this, 'record_query' ), 9999 ); // Set priority high to make sure it's the last filter to run
+		}
+
+		add_action( 'wp_ajax_query_recorder_toggle_active', array( $this, 'ajax_toggle_active' ) );
+	}
+
+	function ajax_toggle_active() {
+		if( !current_user_can( $this->required_cap ) ) {
+			echo '-1';
+			exit;
+		}
+
+		$this->options['active'] = ( '1' == $_POST['active_status'] ) ? false : true;
+		update_option( 'query_recorder', $this->options );
+
+		echo '1';
+		exit;
 	}
 
 	function admin_init() {
@@ -35,6 +57,17 @@ class Query_Recorder {
 		$link = sprintf( '<a href="%s">%s</a>', admin_url( $this->plugin_base ), __( 'Settings', 'query-recorder' ) );
 		array_unshift( $links, $link );
 		return $links;
+	}
+
+	function admin_bar_menu() {
+		global $wp_admin_bar;
+
+		// Add the main siteadmin menu item
+		$wp_admin_bar->add_menu( array(
+			'id'		=> 'query-recorder',
+			'parent'	=> 'top-secondary',
+			'meta'		=> array( 'class' => 'query-recorder' ),
+		) );
 	}
 
 	function record_query( $sql ) {
@@ -58,6 +91,9 @@ class Query_Recorder {
 	}
 
 	function set_default_options() {
+		// whether or not the recording is active
+		$this->default_options['active'] = true;
+
 		// default option for "Save queries to file"
 		$upload_dir = wp_upload_dir();
 		$salt = strtolower( wp_generate_password( 5, false, false ) );
@@ -102,6 +138,34 @@ class Query_Recorder {
 		update_option( 'query_recorder', $this->options );
 
 		echo '<div id="message" class="updated fade"><p>' . __( 'Options saved.', 'query-recorder' ) . '</p></div>';
+	}
+
+	function admin_bar_assets() {
+		$version = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? time() : $this->plugin_version;
+		$plugins_url = trailingslashit( plugins_url() ) . trailingslashit( $this->plugin_folder_name );
+
+		// css
+		$src = $plugins_url . 'asset/css/admin-bar.css';
+		wp_enqueue_style( 'query-recorder-admin-bar-styles', $src, array(), $version );
+
+		// js
+		$src = $plugins_url . 'asset/js/admin-bar.js';
+		wp_enqueue_script( 'query-recorder-admin-bar-script', $src, array( 'jquery' ), $version, true );
+
+		wp_localize_script( 'query-recorder-admin-bar-script', 'query_recorder', array(
+			'active'			=> ( true === $this->options['active'] ) ? 1 : 0,
+			'ajax_url'			=> admin_url( 'admin-ajax.php' ),
+			'start_recording'	=> __( 'Start recording queries', 'query-recorder' ),
+			'stop_recording'	=> __( 'Stop recording queries', 'query-recorder' ),
+			'ajax_problem_on'	=> __( 'An error occured attempting to turn on query recording', 'query-recorder' ),
+			'ajax_problem_off'	=> __( 'An error occured attempting to turn off query recording', 'query-recorder' ),
+		) );
+
+		$src = $plugins_url . 'asset/js/spin.min.js';
+		wp_enqueue_script( 'query-recorder-admin-bar-spin', $src, array(), '2.0.1', true );
+
+		$src = $plugins_url . 'asset/js/spin.js';
+		wp_enqueue_script( 'query-recorder-admin-bar-spin-jquery', $src, array( 'jquery', 'query-recorder-admin-bar-spin' ), '2.0.1', true );
 	}
 
 	function page_options() {

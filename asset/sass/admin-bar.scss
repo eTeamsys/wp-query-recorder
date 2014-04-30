@@ -1,0 +1,61 @@
+#wpadminbar .quicklinks .ab-top-secondary #wp-admin-bar-query-recorder {
+	div.ab-item {
+		padding: 0px 15px;
+	}
+	float: left;
+	display: block;
+	position: relative;
+	cursor: pointer;
+}
+
+#wpadminbar .quicklinks .ab-top-secondary #wp-admin-bar-query-recorder.doing-ajax {
+	cursor: default;
+}
+
+#wpadminbar .quicklinks .ab-top-secondary #wp-admin-bar-query-recorder:before {
+	content: '';
+	display: block;
+	width: 16px;
+	height: 16px;
+	top: 50%;
+	left: 50%;
+	margin-left: -8px;
+	margin-top: -8px;
+	position: absolute;
+	border-radius: 50%;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #bfbfbf 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#bfbfbf)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#bfbfbf 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#bfbfbf 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#bfbfbf 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#bfbfbf 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#bfbfbf',GradientType=0 ); /* IE6-9 */
+}
+
+#wpadminbar .quicklinks .ab-top-secondary #wp-admin-bar-query-recorder:after {
+	content: '';
+	display: block;
+	width: 8px;
+	height: 8px;
+	top: 50%;
+	left: 50%;
+	margin-left: -4px;
+	margin-top: -4px;
+	position: absolute;
+	background-color: #666;
+	border-radius: 50%;
+	box-shadow: inset 0px 1px 3px rgba(0,0,0,0.5);
+}
+
+#wpadminbar .quicklinks .ab-top-secondary #wp-admin-bar-query-recorder.active:after {
+	background-color: #D70000;
+}
+
+#wpadminbar .quicklinks .ab-top-secondary #wp-admin-bar-query-recorder.doing-ajax:before {
+	display: none;
+}
+
+#wpadminbar .quicklinks .ab-top-secondary #wp-admin-bar-query-recorder.doing-ajax:after {
+	display: none;
+}
