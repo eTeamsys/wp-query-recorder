@@ -12,7 +12,8 @@ class Query_Recorder {
 		$this->plugin_basename = plugin_basename( $plugin_file_path );
 		$this->plugin_base ='options-general.php?page=query-recorder';
 
-		$this->required_cap = 'manage_options';
+		// allow developers to modify the capability required to use this plugin
+		$this->required_cap = apply_filters( 'query_recorder_required_cap', 'manage_options' );
 
 		if ( is_admin() ) {
 			$this->admin_init();
