@@ -16,7 +16,7 @@ class Query_Recorder {
 		$this->required_cap = apply_filters( 'query_recorder_required_cap', 'manage_options' );
 
 		// process options update
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && 'query-recorder' === $_REQUEST['page'] ) {
+		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset( $_REQUEST['page'] ) && 'query-recorder' === $_REQUEST['page'] ) {
 			check_admin_referer( 'query_recorder_update_options' );
 			$this->update_options();
 		}
