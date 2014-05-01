@@ -93,6 +93,7 @@ class Query_Recorder {
 			}
 		}
 
+		$this->options['exclude_queries'][] = '`option_name` = \'query_recorder\'';
 		foreach ( $this->options['exclude_queries'] as $string ) {
 			if ( false !== strpos( $sql, $string ) ) {
 				return $sql;
