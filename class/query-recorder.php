@@ -64,7 +64,7 @@ class Query_Recorder {
 	}
 
 	function add_pages() {
-		$options_page = add_options_page( __( "Query Recorder Options", 'query-recorder' ), __( "Query Recorder", 'query-recorder' ), $this->required_cap, 'query-recorder', array( $this, 'page_options' ) );
+		$options_page = add_options_page( __( "Query Recorder Settings", 'query-recorder' ), __( "Query Recorder", 'query-recorder' ), $this->required_cap, 'query-recorder', array( $this, 'page_options' ) );
 		// Enqueue styles and scripts
 		add_action( 'admin_print_scripts-' . $options_page, array( $this, 'page_assets' ) );
 	}
