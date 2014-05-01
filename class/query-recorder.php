@@ -93,7 +93,7 @@ class Query_Recorder {
 
 	function set_default_options() {
 		// whether or not the recording is active
-		$this->default_options['active'] = true;
+		$this->default_options['active'] = false;
 
 		// default option for "Save queries to file"
 		$upload_dir = wp_upload_dir();
