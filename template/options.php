@@ -1,5 +1,5 @@
 <div class="wrap query-recorder">
-	<h2><?php _e( 'Query Recorder Options', 'query-recorder' ); ?></h2>
+	<h2><?php _e( 'Query Recorder Settings', 'query-recorder' ); ?></h2>
 
 	<?php if( isset( $_GET['settings-updated'] ) ) : ?>
 		<div id="message" class="updated fade"><p><?php _e( 'Settings saved.', 'query-recorder' ); ?></p></div>
