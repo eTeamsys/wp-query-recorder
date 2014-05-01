@@ -1,6 +1,10 @@
 <div class="wrap query-recorder">
 	<h2><?php _e( 'Query Recorder Options', 'query-recorder' ); ?></h2>
 
+	<?php if( isset( $_GET['settings-updated'] ) ) : ?>
+		<div id="message" class="updated fade"><p><?php _e( 'Settings saved.', 'query-recorder' ); ?></p></div>
+	<?php endif; ?>
+
 	<form method="post" action="">
 		<?php wp_nonce_field( 'query_recorder_update_options' ); ?>
 		<table class="form-table">

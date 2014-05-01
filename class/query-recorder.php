@@ -15,6 +15,12 @@ class Query_Recorder {
 		// allow developers to modify the capability required to use this plugin
 		$this->required_cap = apply_filters( 'query_recorder_required_cap', 'manage_options' );
 
+		// process options update
+		if ( 'POST' == $_SERVER['REQUEST_METHOD'] && 'query-recorder' === $_REQUEST['page'] ) {
+			check_admin_referer( 'query_recorder_update_options' );
+			$this->update_options();
+		}
+
 		if ( is_admin() ) {
 			$this->admin_init();
 		}
@@ -146,7 +152,8 @@ class Query_Recorder {
 
 		update_option( 'query_recorder', $this->options );
 
-		echo '<div id="message" class="updated fade"><p>' . __( 'Options saved.', 'query-recorder' ) . '</p></div>';
+		wp_redirect( admin_url( $this->plugin_base ) . '&settings-updated=1' );
+		exit;
 	}
 
 	function admin_bar_assets() {
