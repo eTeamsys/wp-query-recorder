@@ -164,7 +164,8 @@ class Query_Recorder {
 		$_POST = stripslashes_deep( $_POST );
 
 		$this->options['saved_queries_file_path'] = trim( $_POST['saved_queries_file_path'] );
-		$this->options['exclude_queries'] = explode( "\n", $_POST['exclude_queries'] );
+		$this->options['exclude_queries'] = str_replace( "\r", '', $_POST['exclude_queries'] );
+		$this->options['exclude_queries'] = explode( "\n", $this->options['exclude_queries'] );
 		$this->options['record_queries_beggining_with'] = isset( $_POST['record_queries_beggining_with'] ) ? $_POST['record_queries_beggining_with'] : array();
 
 		update_option( 'query_recorder', $this->options );
