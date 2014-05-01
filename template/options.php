@@ -43,9 +43,7 @@
 			</tbody>
 		</table>
 
-		<p class="submit">
-			<input type="submit" value="<?php _e( 'Save Changes', 'query-recorder' ); ?>" class="button button-primary" id="submit" name="submit">
-		</p>
+		<?php submit_button(); ?>
 	</form>
 
 </div>
