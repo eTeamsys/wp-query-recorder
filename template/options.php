@@ -2,7 +2,7 @@
 	<h2><?php _e( 'Query Recorder Settings', 'query-recorder' ); ?></h2>
 
 	<?php if( isset( $_GET['settings-updated'] ) ) : ?>
-		<div id="message" class="updated fade"><p><?php _e( 'Settings saved.', 'query-recorder' ); ?></p></div>
+		<div id="message" class="updated fade"><p><strong><?php _e( 'Settings saved.', 'query-recorder' ); ?></strong></p></div>
 	<?php endif; ?>
 
 	<form method="post" action="">
