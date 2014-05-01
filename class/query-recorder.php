@@ -203,11 +203,6 @@ class Query_Recorder {
 	}
 
 	function page_options() {
-		if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
-			check_admin_referer( 'query_recorder_update_options' );
-			$this->update_options();
-		}
-
 		extract( $this->options, EXTR_SKIP );
 
 		// these types of queries can be recorded, others cannot
