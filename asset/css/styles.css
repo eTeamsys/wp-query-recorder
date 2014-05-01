@@ -1,0 +1,7 @@
+.query-recorder #exclude-queries {
+  width: 530px;
+  height: 215px;
+}
+.query-recorder #saved-queries-file-path {
+  width: 530px;
+}

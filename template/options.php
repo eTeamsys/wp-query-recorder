@@ -23,7 +23,7 @@
 					</th>
 					<td>
 						<p>
-							<textarea id="exclude-queries" cols="50" rows="10" name="exclude_queries"><?php echo $exclude_queries; ?></textarea>
+							<textarea id="exclude-queries" name="exclude_queries"><?php echo $exclude_queries; ?></textarea>
 							<p class="description"><?php _e( "One exclusion per line.", "query-recorder" ); ?></p>
 						</p>
 					</td>

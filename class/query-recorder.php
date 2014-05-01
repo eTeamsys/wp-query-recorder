@@ -65,6 +65,17 @@ class Query_Recorder {
 
 	function add_pages() {
 		$options_page = add_options_page( __( "Query Recorder Options", 'query-recorder' ), __( "Query Recorder", 'query-recorder' ), $this->required_cap, 'query-recorder', array( $this, 'page_options' ) );
+		// Enqueue styles and scripts
+		add_action( 'admin_print_scripts-' . $options_page, array( $this, 'page_assets' ) );
+	}
+
+	function page_assets() {
+		$version = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? time() : $this->plugin_version;
+		$plugins_url = trailingslashit( plugins_url() ) . trailingslashit( $this->plugin_folder_name );
+
+		// css
+		$src = $plugins_url . 'asset/css/styles.css';
+		wp_enqueue_style( 'query-recorder-styles', $src, array(), $version );
 	}
 
 	function plugin_action_links( $links ) {
