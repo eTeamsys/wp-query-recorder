@@ -46,7 +46,6 @@ class Query_Recorder {
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
 			$date_stamp_message = sprintf( __( 'Stopped recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
-			
 		} else {
 			$this->options['active'] = true;
 			$date_stamp_message = sprintf( __( 'Started recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
