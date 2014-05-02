@@ -4,7 +4,7 @@ Plugin Name: Query Recorder
 Plugin URI: http://deliciousbrains.com
 Description: Record SQL queries to a text file to run later
 Author: Delicious Brains
-Version: 0.1
+Version: 1.0
 Author URI: http://deliciousbrains.com
 */
 
@@ -19,7 +19,7 @@ Author URI: http://deliciousbrains.com
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // **********************************************************************
 
-$GLOBALS['query_recorder_version'] = '0.1';
+$GLOBALS['query_recorder_version'] = '1.0';
 
 function query_recorder_init() {
 	require_once 'class/query-recorder.php';
