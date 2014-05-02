@@ -130,7 +130,7 @@ class Query_Recorder {
 		$upload_dir = wp_upload_dir();
 		$salt = strtolower( wp_generate_password( 5, false, false ) );
 		$saved_queries_file_path = sprintf( '%srecorded-queries-%s.sql', trailingslashit( $upload_dir['basedir'] ), $salt );
-		$this->default_options['saved_queries_file_path'] = $saved_queries_file_path;
+		$this->default_options['saved_queries_file_path'] = $this->slash_one_direction( $saved_queries_file_path );
 	
 		// default option for "Exclude queries containing"
 		$this->default_options['exclude_queries'] = array( '_transient', '`option_name` = \'cron\'' );
@@ -163,7 +163,7 @@ class Query_Recorder {
 	function update_options() {
 		$_POST = stripslashes_deep( $_POST );
 
-		$this->options['saved_queries_file_path'] = trim( $_POST['saved_queries_file_path'] );
+		$this->options['saved_queries_file_path'] = $this->slash_one_direction( trim( $_POST['saved_queries_file_path'] ) );
 		$this->options['exclude_queries'] = str_replace( "\r", '', $_POST['exclude_queries'] );
 		$this->options['exclude_queries'] = explode( "\n", $this->options['exclude_queries'] );
 		$this->options['record_queries_beggining_with'] = isset( $_POST['record_queries_beggining_with'] ) ? $_POST['record_queries_beggining_with'] : array();
@@ -212,6 +212,11 @@ class Query_Recorder {
 		$exclude_queries = ( empty( $exclude_queries ) ) ? '' : implode( "\n", $exclude_queries );
 
 		require_once $this->plugin_dir_path . 'template/options.php';
+	}
+
+	// converts file paths that include mixed slashes to use the correct type of slash for the current operating system
+	function slash_one_direction( $path ) {
+		return str_replace( array( '/', '\\' ), DIRECTORY_SEPARATOR, $path );
 	}
 
 }
