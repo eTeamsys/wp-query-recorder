@@ -1,7 +1,130 @@
+.query-recorder .query-recorder-container {
+  position: relative;
+}
+.query-recorder .query-recorder-main {
+  margin-right: 320px;
+  min-height: 775px;
+}
 .query-recorder #exclude-queries {
   width: 530px;
   height: 215px;
 }
 .query-recorder #saved-queries-file-path {
   width: 530px;
+}
+.query-recorder #wpmdb-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+.query-recorder #wpmdb-sidebar .author {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  overflow: hidden;
+}
+.query-recorder #wpmdb-sidebar .author img {
+  float: left;
+  margin-right: 20px;
+}
+.query-recorder #wpmdb-sidebar .author .desc {
+  float: left;
+}
+.query-recorder #wpmdb-sidebar .author h3 {
+  font-size: 12px;
+  margin: 0;
+}
+.query-recorder #wpmdb-sidebar .author h2 {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+.query-recorder #wpmdb-sidebar .author h2 a {
+  color: #464646;
+  text-decoration: none;
+}
+.query-recorder #wpmdb-sidebar .author h2 a:hover {
+  color: #000;
+}
+.query-recorder #wpmdb-sidebar .author p {
+  margin: 0;
+}
+.query-recorder #wpmdb-sidebar .video {
+  position: relative;
+  display: block;
+}
+.query-recorder #wpmdb-sidebar .video:before, .query-recorder #wpmdb-sidebar .video:after {
+  position: absolute;
+  content: " ";
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.query-recorder #wpmdb-sidebar .video:before {
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  z-index: 2;
+}
+.query-recorder #wpmdb-sidebar .video:after {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  border: 20px solid transparent;
+  border-top-width: 12px;
+  border-bottom-width: 12px;
+  border-left-color: #333;
+  background: transparent;
+  display: block;
+  left: 23.4375px;
+  width: 0px;
+  height: 0px;
+  z-index: 3;
+}
+.query-recorder #wpmdb-sidebar .subscribe h2 {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 0.5em;
+  color: #666;
+  font-size: 20px;
+}
+.query-recorder #wpmdb-sidebar .subscribe h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.query-recorder #wpmdb-sidebar .subscribe p {
+  margin: 0;
+}
+.query-recorder #wpmdb-sidebar .subscribe p.interesting {
+  margin-bottom: 1em;
+}
+.query-recorder #wpmdb-sidebar .subscribe .links {
+  margin-bottom: 2em;
+}
+.query-recorder #wpmdb-sidebar .subscribe .links a {
+  text-decoration: none;
+}
+.query-recorder #wpmdb-sidebar .subscribe .promise {
+  color: #999;
+}
+.query-recorder #wpmdb-sidebar .subscribe .field {
+  margin-bottom: 1em;
+}
+.query-recorder #wpmdb-sidebar .subscribe .field p {
+  margin-bottom: 0.3em;
+}
+.query-recorder #wpmdb-sidebar .subscribe .field.submit-button {
+  margin-bottom: 1em;
 }
