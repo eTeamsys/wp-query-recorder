@@ -104,13 +104,10 @@ class Query_Recorder {
 			}
 		}
 
+		$exclude_queries = $this->options['exclude_queries'];
 		/* Ensures that Query Recorder specific option updates are not recorded */
-		$exclude_query_recorder_sql = '`option_name` = \'query_recorder\'';
-		if( !in_array( $exclude_query_recorder_sql, $this->options['exclude_queries'] ) ) {
-			$this->options['exclude_queries'][] = $exclude_query_recorder_sql;
-		}
-
-		foreach ( $this->options['exclude_queries'] as $string ) {
+		$exclude_queries[] = '`option_name` = \'query_recorder\'';
+		foreach ( $exclude_queries as $string ) {
 			if ( false !== strpos( $sql, $string ) ) {
 				return $sql;
 			}
