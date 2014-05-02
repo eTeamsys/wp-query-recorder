@@ -15,6 +15,8 @@ Allows developers to record queries when setting up plugins locally, creating an
 
 Interested in contributing to Query Recorder? Please visit https://github.com/deliciousbrains/wp-query-recorder
 
+Banner image credit - [cmoi](https://www.flickr.com/photos/cmoi/)
+
 == Installation ==
 
 1. Use WordPress' built-in installer
