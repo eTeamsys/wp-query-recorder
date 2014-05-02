@@ -112,3 +112,18 @@
     display: none;
   }
 }
+@media screen and (max-width: 1080px) {
+  .query-recorder .form-table th, .query-recorder .form-table td {
+    display: block;
+    width: auto;
+    vertical-align: middle;
+    padding: 10px 0 0 0;
+    border-bottom: 0;
+  }
+  .query-recorder .form-table td input[type=text], .query-recorder .form-table td textarea {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 7px 10px;
+    display: block;
+  }
+}
