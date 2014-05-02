@@ -5,12 +5,19 @@
   margin-right: 320px;
   min-height: 775px;
 }
+.query-recorder .query-recorder-intro {
+  font-size: 14px;
+  width: 100%;
+  max-width: 750px;
+}
 .query-recorder #exclude-queries {
-  width: 530px;
+  width: 100%;
+  max-width: 530px;
   height: 215px;
 }
 .query-recorder #saved-queries-file-path {
-  width: 530px;
+  width: 100%;
+  max-width: 530px;
 }
 .query-recorder #wpmdb-sidebar {
   position: absolute;

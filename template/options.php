@@ -9,7 +9,7 @@
 
 		<div class="query-recorder-main">
 
-			<p><?php _e( "When you're ready to start recording queries, simply click the little record button in the admin bar above. It will turn red to show you are currently recording queries. Click it again to turn it off.", 'query-recorder' ); ?></p>
+			<p class="query-recorder-intro"><?php _e( "When you're ready to start recording queries, simply click the little record button in the admin bar above. It will turn red to show you are currently recording queries. Click it again to turn it off.", 'query-recorder' ); ?></p>
 
 			<form method="post" action="">
 				<?php wp_nonce_field( 'query_recorder_update_options' ); ?>
