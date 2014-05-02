@@ -25,24 +25,24 @@
 
 		<?php $user = wp_get_current_user(); ?>
 
-		<h3><em><?php _e( 'Get 20% Off!', 'wp-migrate-db' ); ?></em></h3>
+		<h3><em><?php _e( 'Get 20% Off!', 'query-recorder' ); ?></em></h3>
 
 		<p class="interesting">
 			<?php _e( 'Subscribe to receive news &amp; updates below and we\'ll instantly send you a coupon code to get 20% off any WP Migrate DB Pro license.', 'query-recorder' ); ?>
 		</p>
 
 		<div class="field notify-name">
-			<p><?php _e( 'Your Name', 'wp-migrate-db' ); ?></p>
+			<p><?php _e( 'Your Name', 'query-recorder' ); ?></p>
 			<input type="text" name="cm-name" value="<?php echo trim( esc_attr( $user->first_name ) . ' ' . esc_attr( $user->last_name ) ); ?>" />
 		</div>
 
 		<div class="field notify-email">
-			<p><?php _e( 'Your Email', 'wp-migrate-db' ); ?></p>
+			<p><?php _e( 'Your Email', 'query-recorder' ); ?></p>
 			<input type="email" name="cm-virn-virn" value="<?php echo esc_attr( $user->user_email ); ?>" />
 		</div>
 
 		<div class="field submit-button">
-			<input type="submit" class="button" value="<?php _e( 'Subscribe', 'wp-migrate-db' ); ?>" />
+			<input type="submit" class="button" value="<?php _e( 'Subscribe', 'query-recorder' ); ?>" />
 		</div>
 
 		<p class="promise">
