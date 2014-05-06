@@ -22,6 +22,11 @@ Banner image credit - [cmoi](https://www.flickr.com/photos/cmoi/)
 1. Use WordPress' built-in installer
 2. Access the "Query Recorder" menu option under Settings
 
+== Screenshots ==
+
+1. Query Recorder settings screen
+2. Start/stop query recording button
+
 == Changelog ==
 
 = 0.1 =
