@@ -1,0 +1,130 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Query Recorder\n"
+"POT-Creation-Date: 2014-05-06 11:04+1000\n"
+"PO-Revision-Date: 2014-05-06 11:06+1000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class/query-recorder.php:48
+#, php-format
+msgid "Stopped recording %s UTC"
+msgstr ""
+
+#: class/query-recorder.php:51
+#, php-format
+msgid "Started recording %s UTC"
+msgstr ""
+
+#: class/query-recorder.php:66 template/options.php:2
+msgid "Query Recorder Settings"
+msgstr ""
+
+#: class/query-recorder.php:66
+msgid "Query Recorder"
+msgstr ""
+
+#: class/query-recorder.php:82
+msgid "Settings"
+msgstr ""
+
+#: class/query-recorder.php:188
+msgid "Start recording queries"
+msgstr ""
+
+#: class/query-recorder.php:189
+msgid "Stop recording queries"
+msgstr ""
+
+#: class/query-recorder.php:190
+msgid "An error occured attempting to turn on query recording"
+msgstr ""
+
+#: class/query-recorder.php:191
+msgid "An error occured attempting to turn off query recording"
+msgstr ""
+
+#: template/options.php:5
+msgid "Settings saved."
+msgstr ""
+
+#: template/options.php:12
+msgid ""
+"When you're ready to start recording queries, simply click the little record "
+"button in the admin bar above. It will turn red to show you are currently "
+"recording queries. Click it again to turn it off."
+msgstr ""
+
+#: template/options.php:20
+msgid "Save queries to file"
+msgstr ""
+
+#: template/options.php:28
+msgid "Don't record queries containing"
+msgstr ""
+
+#: template/options.php:33
+msgid "One exclusion per line."
+msgstr ""
+
+#: template/options.php:39
+msgid "Record queries that begin with"
+msgstr ""
+
+#: template/sidebar.php:7
+msgid "Created &amp; maintained by"
+msgstr ""
+
+#: template/sidebar.php:10
+msgid "Profile"
+msgstr ""
+
+#: template/sidebar.php:12
+msgid "Donate"
+msgstr ""
+
+#: template/sidebar.php:18
+msgid "WordPress Development and Deployment Strategy"
+msgstr ""
+
+#: template/sidebar.php:23
+msgid ""
+"<strong>Free pro tips</strong> on advanced WordPress development techniques "
+"and deployment strategies."
+msgstr ""
+
+#: template/sidebar.php:27
+msgid "Your Name"
+msgstr ""
+
+#: template/sidebar.php:31
+msgid "Your Email"
+msgstr ""
+
+#: template/sidebar.php:35
+msgid "Subscribe"
+msgstr ""
+
+#: template/sidebar.php:39
+msgid ""
+"I promise I will not use your email for anything else and you can "
+"unsubscribe with <span style=\"white-space: nowrap;\">1-click anytime</span>."
+msgstr ""
+
+#: template/sidebar.php:45
+msgid ""
+"WP Migrate DB Pro &mdash; Push and pull your database from one WordPress "
+"install to another in 1-click."
+msgstr ""

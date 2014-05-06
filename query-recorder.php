@@ -21,6 +21,11 @@ Author URI: http://deliciousbrains.com
 
 $GLOBALS['query_recorder_version'] = '1.0';
 
+function query_recorder_load_textdomain() {
+	load_plugin_textdomain( 'query-recorder', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+add_action( 'wp_loaded', 'query_recorder_load_textdomain' );
+
 function query_recorder_init() {
 	require_once 'class/query-recorder.php';
 
