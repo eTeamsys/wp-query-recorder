@@ -113,8 +113,9 @@ class Query_Recorder {
 		}
 
 		$upload_dir = wp_upload_dir();
-		// check to confirm sql has an ending semicolon before saving EOL
-		$save_sql = substr( $sql, -1 ) != ';') ? $sql : $sql . ';';
+
+		// check if SQL has an ending semicolon and add if it doesn't
+		$save_sql = substr( rtrim( $sql ), -1 ) == ';' ? $sql : $sql . ' ;';
 		file_put_contents( $this->options['saved_queries_file_path'], $save_sql . "\n", FILE_APPEND );
 
 		return $sql;
