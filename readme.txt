@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: database, migrate, deployment, mysql
 Requires at least: 3.2
 Tested up to: 3.9
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv3
 
 Save queries run by your theme or plugins to an SQL script for deployment
@@ -28,6 +28,9 @@ Banner image credit - [cmoi](https://www.flickr.com/photos/cmoi/)
 2. Start/stop query recording button
 
 == Changelog ==
+
+= 1.0.1 =
+* Bug fix: Semicolon missing at the end of each SQL statement
 
 = 1.0 =
 * Initial release
