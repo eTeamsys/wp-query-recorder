@@ -46,16 +46,13 @@ class Query_Recorder {
 
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
-                        unset($wp_session['query_recorder_date']);
 			$date_stamp_message = sprintf( __( 'Stopped recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
+                        unset($wp_session['query_recorder_date']);
 		} else {
 			$this->options['active'] = true;
 			$date_stamp_message = sprintf( __( 'Started recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
 		}
 		update_option( 'query_recorder', $this->options );
-                $date = date('Y-m-d-His');
-                $this->options['saved_queries_file_path'] = str_replace('{#date#}', date('Y-m-d-His') , $this->options['saved_queries_file_path']);
-
 		file_put_contents( $this->getRecordPath(), '# ' . $date_stamp_message . "\n", FILE_APPEND );
 
 		echo '1';
