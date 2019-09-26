@@ -46,7 +46,7 @@ class Query_Recorder {
 
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
-                        unset($_SESSION['query_recorder_date']);
+                        $_SESSION['query_recorder_date'] == null;
                         
 		} else {
 			$this->options['active'] = true;
@@ -101,8 +101,10 @@ class Query_Recorder {
             if(empty($_SESSION['query_recorder_date'])) {
                 $date = date('Y-m-d-His');
                 $_SESSION['query_recorder_date'] = $date;
+                var_dump('empty : ' . $date);
             } else {
                 $date = $_SESSION['query_recorder_date'];
+                var_dump('set : ' . $date);
             }
             
             $path = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
