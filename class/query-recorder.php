@@ -47,10 +47,12 @@ class Query_Recorder {
 
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
-                        $_SESSION['query_recorder_date'] == null;
+                        unset($_SESSION['query_recorder_date']);
+                        var_dump('active : false');
                         
 		} else {
 			$this->options['active'] = true;
+                        var_dump('active : true');
 		}
                 
 		update_option( 'query_recorder', $this->options );
