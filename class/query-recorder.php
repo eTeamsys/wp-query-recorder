@@ -42,7 +42,9 @@ class Query_Recorder {
 			echo '-1';
 			exit;
 		}
-
+                
+                $this->options['saved_queries_file_path'] = str_replace('{#date#}', date('Y-m-d-His') , $this->options['saved_queries_file_path']);
+                
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
 			$date_stamp_message = sprintf( __( 'Stopped recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
@@ -127,8 +129,14 @@ class Query_Recorder {
 
 		// default option for "Save queries to file"
 		$upload_dir = wp_upload_dir();
+                $directory = trailingslashit( $upload_dir['basedir'] ) . '/sql/';
+                
+                if(!is_dir($directory)) {
+                    mkdir( $directory , 0754 , true);
+                }
+                
 		$salt = strtolower( wp_generate_password( 5, false, false ) );
-		$saved_queries_file_path = sprintf( '%srecorded-queries-%s.sql', trailingslashit( $upload_dir['basedir'] ), $salt );
+		$saved_queries_file_path = sprintf( '%srecorded-queries-%s.sql', $directory , '{#date#}' );
 		$this->default_options['saved_queries_file_path'] = $this->slash_one_direction( $saved_queries_file_path );
 	
 		// default option for "Exclude queries containing"
@@ -137,7 +145,28 @@ class Query_Recorder {
 		// default option for "Record queries that begin with"
 		$this->default_options['record_queries_beggining_with'] = array( 'INSERT', 'UPDATE', 'DELETE', 'DROP', 'CREATE' );
 	}
-
+        
+        public function loadSQLFiles(){
+            
+            $dirPath = pathinfo($this->options['saved_queries_file_path'] , PATHINFO_DIRNAME);
+            $sqlList = glob($dirPath . '*.sql' );
+            
+            $output = [];
+            
+            foreach ($sqlList as $fileName) {
+                
+                $output[] = 
+                        [
+                            'name' => basename($fileName),
+                            'link' => '<a href="data:text/plain;base64,'. base64_encode(file_get_contents($filename)) .'" download="' . $fileName . '">download</a>' 
+                        ];
+                
+            }
+            
+            return $output;
+            
+        }
+                
 	function load_options() {
 		$update_options = false;
 

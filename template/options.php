@@ -57,8 +57,15 @@
 			</form>
 
 		</div>
-
-		<?php require_once $this->plugin_dir_path . 'template/sidebar.php'; ?>
-
+            <div>
+                <?php $files = $query_recorder->loadSQLFiles(); ?>
+                <table>
+                <?php foreach ($files as $sql): ?>
+                    <tr>
+                        <td><?php echo $sql['name'] ?></td><td><?php echo $sql['link'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </table>
+            </div>
 	</div>
 </div>
