@@ -53,7 +53,7 @@ class Query_Recorder {
 			$date_stamp_message = sprintf( __( 'Started recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
 		}
 		update_option( 'query_recorder', $this->options );
-		file_put_contents( $this->getRecordPath(), '# ' . $date_stamp_message . "\n", FILE_APPEND );
+		file_put_contents( $this->getRecordPath() , '# ' . $date_stamp_message . "\n", FILE_APPEND );
 
 		echo '1';
 		exit;
@@ -99,7 +99,7 @@ class Query_Recorder {
         
         public function getRecordPath() {
             
-            if(empty($_SESSION['query_recorder_date'])) {
+            if(!empty($_SESSION['query_recorder_date'])) {
                 $date = $_SESSION['query_recorder_date'];
             } else {
                 $date = date('Y-m-d-His');
@@ -111,7 +111,7 @@ class Query_Recorder {
         }
                 
 	function record_query( $sql ) {
-                global $wp_session;
+ 
 		if ( !empty( $this->options['record_queries_beggining_with'] ) ) {
 			$record_queries_beggining_with = implode( '|', $this->options['record_queries_beggining_with'] );
 			if ( !preg_match( '@^(' . $record_queries_beggining_with . ')@i', $sql ) ) {
