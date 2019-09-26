@@ -99,14 +99,15 @@ class Query_Recorder {
         
         public function getRecordPath() {
             
-            $date = date('Y-m-d-His');
+            
             if(!empty($wp_session['query_recorder_date'])) {
                 $date = $_SESSION['query_recorder_date'];
             } else {
+                $date = date('Y-m-d-His');
                 $_SESSION['query_recorder_date'] = $date;
             }
             
-            $path = str_replace('{#date#}', $_SESSION['query_recorder_date'] , $this->options['saved_queries_file_path']);
+            $path = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
             return $path;
         }
                 
