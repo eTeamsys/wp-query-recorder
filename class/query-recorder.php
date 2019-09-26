@@ -154,11 +154,11 @@ class Query_Recorder {
             $output = [];
             
             foreach ($sqlList as $fileName) {
-                
+                $basename = basename($fileName);
                 $output[] = 
                         [
-                            'name' => basename($fileName),
-                            'link' => '<a href="data:text/plain;base64,'. base64_encode(file_get_contents($fileName)) .'" download="' . $fileName . '">download</a>' 
+                            'name' => $basename,
+                            'link' => '<a href="data:text/plain;base64,'. base64_encode(file_get_contents($fileName)) .'" download="' . $basename . '">download</a>' 
                         ];
                 
             }
