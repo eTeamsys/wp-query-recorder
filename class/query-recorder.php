@@ -98,11 +98,11 @@ class Query_Recorder {
         
         public function getRecordPath() {
             
-            if(!empty($_SESSION['query_recorder_date'])) {
-                $date = $_SESSION['query_recorder_date'];
-            } else {
+            if(empty($_SESSION['query_recorder_date'])) {
                 $date = date('Y-m-d-His');
                 $_SESSION['query_recorder_date'] = $date;
+            } else {
+                $date = $_SESSION['query_recorder_date'];
             }
             
             $path = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
