@@ -42,9 +42,7 @@ class Query_Recorder {
 			echo '-1';
 			exit;
 		}
-                
-                $this->options['saved_queries_file_path'] = str_replace('{#date#}', date('Y-m-d-His') , $this->options['saved_queries_file_path']);
-                
+
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
 			$date_stamp_message = sprintf( __( 'Stopped recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
@@ -53,6 +51,7 @@ class Query_Recorder {
 			$date_stamp_message = sprintf( __( 'Started recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
 		}
 		update_option( 'query_recorder', $this->options );
+                $this->options['saved_queries_file_path'] = str_replace('{#date#}', date('Y-m-d-His') , $this->options['saved_queries_file_path']);
 		file_put_contents( $this->options['saved_queries_file_path'], '# ' . $date_stamp_message . "\n", FILE_APPEND );
 
 		echo '1';
