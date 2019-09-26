@@ -38,6 +38,7 @@ class Query_Recorder {
 	}
 
 	function ajax_toggle_active() {
+               
 		if( !current_user_can( $this->required_cap ) ) {
 			echo '-1';
 			exit;
@@ -51,8 +52,10 @@ class Query_Recorder {
 			$date_stamp_message = sprintf( __( 'Started recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
 		}
 		update_option( 'query_recorder', $this->options );
+                $date = date('Y-m-d-His');
                 $this->options['saved_queries_file_path'] = str_replace('{#date#}', date('Y-m-d-His') , $this->options['saved_queries_file_path']);
-		file_put_contents( $this->options['saved_queries_file_path'], '# ' . $date_stamp_message . "\n", FILE_APPEND );
+
+		file_put_contents( $this->getRecordPath(), '# ' . $date_stamp_message . "\n", FILE_APPEND );
 
 		echo '1';
 		exit;
@@ -95,8 +98,20 @@ class Query_Recorder {
 			'meta'		=> array( 'class' => 'query-recorder' ),
 		) );
 	}
-
+        
+        public function getRecordPath() {
+            global $wp_session;
+            $date = date('Y-m-d-His');
+            if(!empty($wp_session['query_recorder_date'])) {
+                $date = $wp_session['query_recorder_date'];
+            }
+            
+            $this->options['saved_queries_file_path'] = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
+            
+        }
+                
 	function record_query( $sql ) {
+                global $wp_session;
 		if ( !empty( $this->options['record_queries_beggining_with'] ) ) {
 			$record_queries_beggining_with = implode( '|', $this->options['record_queries_beggining_with'] );
 			if ( !preg_match( '@^(' . $record_queries_beggining_with . ')@i', $sql ) ) {
@@ -117,8 +132,8 @@ class Query_Recorder {
 
 		// check if SQL has an ending semicolon and add if it doesn't
 		$save_sql = substr( rtrim( $sql ), -1 ) == ';' ? $sql : $sql . ' ;';
-		file_put_contents( $this->options['saved_queries_file_path'], $save_sql . "\n", FILE_APPEND );
-
+		file_put_contents( $this->getRecordPath(), $save_sql . "\n", FILE_APPEND );
+                unset($wp_session['query_recorder_date']);
 		return $sql;
 	}
 
