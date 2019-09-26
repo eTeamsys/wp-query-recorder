@@ -99,8 +99,7 @@ class Query_Recorder {
         
         public function getRecordPath() {
             
-            
-            if(!empty($wp_session['query_recorder_date'])) {
+            if(empty($_SESSION['query_recorder_date'])) {
                 $date = $_SESSION['query_recorder_date'];
             } else {
                 $date = date('Y-m-d-His');
