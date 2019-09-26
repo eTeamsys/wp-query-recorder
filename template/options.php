@@ -58,7 +58,11 @@
 
 		</div>
             <div>
-                <?php $files = $query_recorder->loadSQLFiles(); ?>
+                <?php 
+                global $query_recorder;
+                $files = $query_recorder->loadSQLFiles(); 
+                ?>
+                
                 <table>
                 <?php foreach ($files as $sql): ?>
                     <tr>

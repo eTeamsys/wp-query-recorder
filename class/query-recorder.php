@@ -149,7 +149,7 @@ class Query_Recorder {
         public function loadSQLFiles(){
             
             $dirPath = pathinfo($this->options['saved_queries_file_path'] , PATHINFO_DIRNAME);
-            $sqlList = glob($dirPath . '*.sql' );
+            $sqlList = glob($dirPath . '/*.sql' );
             
             $output = [];
             
@@ -158,7 +158,7 @@ class Query_Recorder {
                 $output[] = 
                         [
                             'name' => basename($fileName),
-                            'link' => '<a href="data:text/plain;base64,'. base64_encode(file_get_contents($filename)) .'" download="' . $fileName . '">download</a>' 
+                            'link' => '<a href="data:text/plain;base64,'. base64_encode(file_get_contents($fileName)) .'" download="' . $fileName . '">download</a>' 
                         ];
                 
             }
