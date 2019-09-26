@@ -104,6 +104,8 @@ class Query_Recorder {
             $date = date('Y-m-d-His');
             if(!empty($wp_session['query_recorder_date'])) {
                 $date = $wp_session['query_recorder_date'];
+            } else {
+                $wp_session['query_recorder_date'] = $date;
             }
             
             $path = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
