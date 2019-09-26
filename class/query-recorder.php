@@ -2,6 +2,7 @@
 class Query_Recorder {
 
 	function __construct( $plugin_file_path ) {
+                session_start();
 		$this->set_default_options();
 		$this->load_options();
 
@@ -101,10 +102,8 @@ class Query_Recorder {
             if(empty($_SESSION['query_recorder_date'])) {
                 $date = date('Y-m-d-His');
                 $_SESSION['query_recorder_date'] = $date;
-                var_dump('empty : ' . $date);
             } else {
                 $date = $_SESSION['query_recorder_date'];
-                var_dump('set : ' . $date);
             }
             
             $path = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
