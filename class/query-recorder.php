@@ -46,6 +46,7 @@ class Query_Recorder {
 
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
+                        unset($wp_session['query_recorder_date']);
 			$date_stamp_message = sprintf( __( 'Stopped recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
 		} else {
 			$this->options['active'] = true;
@@ -135,7 +136,7 @@ class Query_Recorder {
 		// check if SQL has an ending semicolon and add if it doesn't
 		$save_sql = substr( rtrim( $sql ), -1 ) == ';' ? $sql : $sql . ' ;';
 		file_put_contents( $this->getRecordPath(), $save_sql . "\n", FILE_APPEND );
-                unset($wp_session['query_recorder_date']);
+            
 		return $sql;
 	}
 
