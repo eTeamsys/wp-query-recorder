@@ -106,8 +106,8 @@ class Query_Recorder {
                 $date = $wp_session['query_recorder_date'];
             }
             
-            $this->options['saved_queries_file_path'] = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
-            
+            $path = str_replace('{#date#}', $date , $this->options['saved_queries_file_path']);
+            return $path;
         }
                 
 	function record_query( $sql ) {
