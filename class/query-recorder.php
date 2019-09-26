@@ -46,15 +46,12 @@ class Query_Recorder {
 
 		if ( '1' == trim( $_POST['active_status'] ) ) {
 			$this->options['active'] = false;
-			$date_stamp_message = sprintf( __( 'Stopped recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
-                        file_put_contents( $this->getRecordPath() , '# ' . $date_stamp_message . "\n", FILE_APPEND );
                         unset($_SESSION['query_recorder_date']);
                         
 		} else {
 			$this->options['active'] = true;
-			$date_stamp_message = sprintf( __( 'Started recording %s UTC', 'query-recorder' ), current_time( 'mysql', 1 ) );
-                        file_put_contents( $this->getRecordPath() , '# ' . $date_stamp_message . "\n", FILE_APPEND );
 		}
+                
 		update_option( 'query_recorder', $this->options );
                 
 		echo '1';
